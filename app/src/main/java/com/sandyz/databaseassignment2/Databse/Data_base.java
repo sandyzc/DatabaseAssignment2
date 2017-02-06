@@ -16,17 +16,16 @@ import android.util.Log;
 
 public class Data_base extends SQLiteOpenHelper {
 
-    public static final String TABLE_NAME ="entry";
-    public static final String ID = "id";
+    private static final String TABLE_NAME = "entry";
+    private static final String ID = "id";
 
-    public static final String COLOUMN_NAME = "product_name";
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABSE_NAME = "products.db";
-    public SQLiteDatabase databse =null;
+    private static final String COLOUMN_NAME = "product_name";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABSE_NAME = "products.db";
+    private SQLiteDatabase databse = null;
 
 
 
-    private static String Sql_Delete_Entries = "Drop table if exists"+ TABLE_NAME;
 
 
 
@@ -52,6 +51,8 @@ public class Data_base extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        String Sql_Delete_Entries = "Drop table if exists" + TABLE_NAME;
 
         db.execSQL(Sql_Delete_Entries);
         onCreate(db);
@@ -114,10 +115,13 @@ public class Data_base extends SQLiteOpenHelper {
                 str[i] = curser.getString(curser.getColumnIndex(COLOUMN_NAME));
                 i++;
             }
+            curser.close();
             return str;
+
         }
         else
         {
+            curser.close();
             return new String[] {};
         }
 

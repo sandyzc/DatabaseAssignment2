@@ -24,11 +24,13 @@ public class MainActivity extends AppCompatActivity {
 
         data_base.insert_products("hp");
         data_base.insert_products("Lenovo");
+        data_base.insert_products("Computer");
+        data_base.insert_products("Motherboard");
 
 
         String[] products= data_base.getAll_products();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list, products);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
         autoCompleteTextView.setAdapter(adapter);
 
     }
